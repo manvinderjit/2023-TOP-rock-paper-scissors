@@ -55,11 +55,11 @@ function playRound(playerSelection, computerSelection) {
     
 }
 
-function getPlayerChoice() {
-    let playerSelection = prompt(" Enter rock, paper, or scissors only!");
-    playerSelection = playerSelection.toLowerCase();
-    return playerSelection;        
-}
+// function getPlayerChoice() {
+//     let playerSelection = prompt(" Enter rock, paper, or scissors only!");
+//     playerSelection = playerSelection.toLowerCase();
+//     return playerSelection;        
+// }
 
 function findWinner(){
     if(playerScore > computerScore){
@@ -73,15 +73,17 @@ function findWinner(){
     }
 }
 
-function game() {
+function playGame(playerSelection) {
 
-    for (let i = 0; i < numberOfRounds; i++){        
-        console.log("Round " + (i + 1));
-        console.log(playRound(getPlayerChoice(), getComputerChoice()));
-    }
+    console.log(playerSelection);
 
-    console.log(findWinner());
+    // for (let round = 0; round < numberOfRounds; round++){        
+    //     console.log("Round " + (round + 1));
+    //     console.log(playRound(playerSelection, getComputerChoice()));
+    // }
+
+    // console.log(findWinner());
 
 }
 
-game();
+// playGame();
