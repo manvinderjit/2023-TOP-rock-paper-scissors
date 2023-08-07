@@ -3,6 +3,8 @@ const numberOfRounds = 5;
 
 let playerScore = 0;
 let computerScore = 0;
+let remainingRounds = numberOfRounds;
+let currentRound = 1;
 
 function getComputerChoice() {
     return selectionOptions[Math.floor(Math.random()*selectionOptions.length)];    
@@ -55,12 +57,6 @@ function playRound(playerSelection, computerSelection) {
     
 }
 
-// function getPlayerChoice() {
-//     let playerSelection = prompt(" Enter rock, paper, or scissors only!");
-//     playerSelection = playerSelection.toLowerCase();
-//     return playerSelection;        
-// }
-
 function findWinner(){
     if(playerScore > computerScore){
         return ("Game over!: Player Wins by " + playerScore + " : " + computerScore);
@@ -73,17 +69,32 @@ function findWinner(){
     }
 }
 
-function playGame(playerSelection) {
-
-    console.log(playerSelection);
-
-    // for (let round = 0; round < numberOfRounds; round++){        
-    //     console.log("Round " + (round + 1));
-    //     console.log(playRound(playerSelection, getComputerChoice()));
-    // }
-
-    // console.log(findWinner());
-
+function displayRoundResult(roundResult){
+    const roundResultPara = document.createElement("p");
+    roundResultPara.innerHTML = `Round ` + `${currentRound}` + `<br>` + `${roundResult}`;
+    document.getElementById("result-area").appendChild(roundResultPara);
 }
 
-// playGame();
+function displayFinalResult(){
+    const resultPara = document.createElement("p");
+    resultPara.innerHTML = `Final Result: ` + `<br>` + `${findWinner()}`;
+    document.getElementById("result-area").appendChild(resultPara);
+}
+
+function playGame(playerSelection) {
+    
+    if (remainingRounds === 0){
+        alert("Game Over!");
+    }
+
+    if(currentRound >= 1 && currentRound <= 5){
+        displayRoundResult(playRound(playerSelection, getComputerChoice())); 
+
+        currentRound++;
+
+        if(currentRound > 5){
+            displayFinalResult();
+        }
+    } 
+   
+}
